@@ -1,2 +1,17 @@
 sudo: required
 services:
+  - docker
+before_install:
+  - docker build -t kman4you/multi-c-react-dev -f ./client/Dockerfile.dev ./client
+script:
+  - docker run kman4you/multi-c-react-dev npm run test -- --watchAll=false
+after_success:
+  - docker build kman4you/multi-client ./client
+  - docker build kman4you/multi-nginx ./nginx
+  - docker build kman4you/multi-server ./server
+  - docker build kman4you/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push kman4you/multi-client
+  - docker push kman4you/multi-nginx
+  - docker push kman4you/multi-server
+  - docker push kman4you/multi-worker
