@@ -1,0 +1,29 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "client",
+      "image": "kman4you/multi-client",
+      "hostname": "client",
+      "essential": false
+    },
+    {
+      "name": "worker",
+      "image": "kman4you/multi-worker",
+      "hostname": "worker",
+      "essential": false
+    },
+    {
+      "name": "server",
+      "image": "kman4you/multi-server",
+      "hostname": "api",
+      "essential": false
+    },
+    {
+      "name": "nginx",
+      "image": "kman4you/multi-nginx",
+      "hostname": "nginx",
+      "essential": true
+    }
+  ]
+}
