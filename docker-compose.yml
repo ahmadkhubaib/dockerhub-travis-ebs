@@ -1,9 +1,9 @@
-version: '3'
+version: "3"
 services:
   db:
-    image: 'postgres:latest'
+    image: "postgres:latest"
   redis:
-    image: 'redis:latest'
+    image: "redis:latest"
   nginx:
     restart: always
     build:
@@ -24,6 +24,8 @@ services:
       - PGHOST = postgres
       - PGDATABASE = postgres
       - PGPASSWORD = postgres_password
+      - REDIS_PORT = 6379
+      - PGPORT = 5432
   client:
     build:
       context: ./client
