@@ -15,3 +15,15 @@ after_success:
   - docker push kman4you/multi-nginx
   - docker push kman4you/multi-server
   - docker push kman4you/multi-worker
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-central-1"
+  app: "multi-container"
+  env: "MultiContainer-env"
+  bucket_name: "elasticbeanstalk-eu-central-1-693572239503"
+  bucket_path: "multi-container"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"

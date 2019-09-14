@@ -5,25 +5,36 @@
       "name": "client",
       "image": "kman4you/multi-client",
       "hostname": "client",
-      "essential": false
+      "essential": false,
+      "memory": 256
     },
     {
       "name": "worker",
       "image": "kman4you/multi-worker",
       "hostname": "worker",
-      "essential": false
+      "essential": false,
+      "memory": 256
     },
     {
       "name": "server",
       "image": "kman4you/multi-server",
       "hostname": "api",
-      "essential": false
+      "essential": false,
+      "memory": 256
     },
     {
       "name": "nginx",
       "image": "kman4you/multi-nginx",
       "hostname": "nginx",
-      "essential": true
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": ["client", "server"],
+      "memory": 256
     }
   ]
 }
